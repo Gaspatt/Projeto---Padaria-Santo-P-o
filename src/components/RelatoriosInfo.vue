@@ -24,17 +24,8 @@ const relatorioConteudo = computed(() => {
       // Lógica para calcular o consumo de produtos
       return 'Consumo de Produtos';
     case 'clientesContribuintes':
-      const clientesContribuintes = {};
-      todasVendas.value.forEach(venda => {
-        if (!clientesContribuintes[venda.nomeCliente]) {
-          clientesContribuintes[venda.nomeCliente] = 0;
-        }
-        clientesContribuintes[venda.nomeCliente] += venda.valorTotal;
-      });
-      const clientesOrdenados = Object.entries(clientesContribuintes)
-        .sort((a, b) => b[1] - a[1])
-        .map(([cliente, total]) => `${cliente}: R$${total.toFixed(2)}`);
-      return clientesOrdenados.join('\n');
+           constLógica para identificar os clientes que mais contribuíram
+      return 'Clientes que Mais Contribuíram';
     case 'fornecedores':
       return todosFornecedores.value.map(fornecedor => fornecedor.nome).join('\n');
     case 'pedidosClientes':
