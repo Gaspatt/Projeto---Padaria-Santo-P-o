@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import VendasForm from '../components/VendasForm.vue';
-import FornecedoresInfo from '../components/FornecedoresInfo.vue';
-import RelatoriosInfo from '../components/RelatoriosInfo.vue';
-import PedidosForm from '../components/PedidosForm.vue';
+import VendasForm from '../views/VendasForm.vue';
+import FornecedoresInfo from '../views/FornecedoresInfo.vue';
+import RelatoriosInfo from '../views/RelatoriosInfo.vue';
+import PedidosForm from '../views/PedidosForm.vue';
 
 const routes = [
   { path: '/', component: VendasForm },
