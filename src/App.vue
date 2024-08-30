@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav>
+    <nav class="navbar">
       <router-link to="/">Registro de Vendas</router-link>
       <router-link to="/pedidos">Pedidos de Clientes</router-link>
       <router-link to="/fornecedores">Fornecedores</router-link>
