@@ -31,7 +31,7 @@ const registrarPedido = () => {
 
 <template>
   <div>
-    <h1>Registro de Pedidos de Clientes</h1>
+    <h1 id=Titulo>Registro de Pedidos de Clientes</h1>
     <form @submit.prevent="registrarPedido">
       <div>
         <label for="nomeCliente">Nome do Cliente:</label>

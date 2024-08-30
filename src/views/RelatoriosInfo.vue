@@ -40,7 +40,7 @@ export default {
         }
         case 'fornecedores':
           return todosFornecedores.value.map(fornecedor => 
-            `${fornecedor.nome} - ${fornecedor.produto} - R$${fornecedor.valor}`
+            `${fornecedor.nome} - ${fornecedor.produto} - R$${fornecedor.valorTotal}`
           ).join('\n');
         case 'pedidosClientes':
           return todosPedidos.value.map(pedido => 
@@ -60,8 +60,9 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h1>Relatórios</h1>
+   <h1 id="Titulo">Relatórios</h1>
+  <div id="Relatoriobtn">
+   
     <button @click="gerarRelatorio('produtosVendidos')">Produtos Vendidos</button>
     <button @click="gerarRelatorio('estoqueProdutos')">Estoque de Produtos</button>
     <button @click="gerarRelatorio('consumoProdutos')">Consumo de Produtos</button>
@@ -71,3 +72,7 @@ export default {
     <pre>{{ relatorioConteudo }}</pre>
   </div>
 </template>
+
+<style scoped>
+
+</style>

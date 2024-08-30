@@ -37,7 +37,7 @@ export default {
 
 <template>
   <div>
-    <h1>Fornecedores</h1>
+    <h1 id="Titulo">Fornecedores</h1>
     <form @submit.prevent="adicionarFornecedor">
       <label for="forneNome">Nome do Fornecedor:</label>
       <input id="forneNome" v-model="novoFornecedor.nome" required />

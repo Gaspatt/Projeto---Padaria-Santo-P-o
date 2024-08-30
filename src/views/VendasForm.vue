@@ -46,8 +46,8 @@ const registrarVenda = () => {
 
 <template>
   <div >
-    <h1 id="TituloVendas">Registro de Vendas - Padaria Santo Pão</h1>
-    <form @submit.prevent="registrarVenda" id="formConteudo">
+    <h1 id="Titulo">Registro de Vendas - Padaria Santo Pão</h1>
+    <form @submit.prevent="registrarVenda">
       <div>
         <label for="NomeCliente">Nome do Cliente:</label>
         <input id="NomeCliente" v-model="NomeCliente" type="text" required />
@@ -85,12 +85,7 @@ const registrarVenda = () => {
 
 
 <style scoped>
-#TituloVendas {
-  text-align: center;
-  margin-bottom: 20px;
-}
 
-#formConteudo {
-  
-}
+
+
 </style>
