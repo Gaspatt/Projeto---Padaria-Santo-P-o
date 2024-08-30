@@ -1,7 +1,53 @@
+<script setup>
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const NomeCliente = ref('')
+const produtos = ref([{ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 }])
+const desconto = ref(0)
+const quantidadeTotal = ref(0)
+const dataHora = ref(new Date().toISOString().slice(0, 16))
+const observacoes = ref('')
+
+const addProduct = () => {
+  produtos.value.push({ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 })
+}
+
+const calculateTotal = () => {
+  quantidadeTotal.value =
+    produtos.value.reduce((sum, product) => {
+      product.totalPrice = product.quantity * product.unitPrice
+      return sum + product.totalPrice
+    }, 0) - desconto.value
+}
+
+const registrarVenda = () => {
+  calculateTotal()
+  alert('Venda registrada com sucesso!')
+  const venda = {
+    NomeCliente: NomeCliente.value,
+    produtos: produtos.value,
+    desconto: desconto.value,
+    quantidadeTotal: quantidadeTotal.value,
+    dataHora: dataHora.value,
+    observacoes: observacoes.value
+  }
+  store.dispatch('registrarVenda', venda)
+  NomeCliente.value = ''
+  produtos.value = [{ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 }]
+  desconto.value = 0
+  quantidadeTotal.value = 0
+  dataHora.value = new Date().toISOString().slice(0, 16)
+  observacoes.value = ''
+}
+</script>
+
 <template>
-  <div>
-    <h1>Registro de Vendas - Padaria Santo Pão</h1>
-    <form @submit.prevent="registrarVenda">
+  <div >
+    <h1 id="TituloVendas">Registro de Vendas - Padaria Santo Pão</h1>
+    <form @submit.prevent="registrarVenda" id="formConteudo">
       <div>
         <label for="NomeCliente">Nome do Cliente:</label>
         <input id="NomeCliente" v-model="NomeCliente" type="text" required />
@@ -36,50 +82,15 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useStore } from 'vuex';
 
-const store = useStore();
-
-const NomeCliente = ref('');
-const produtos = ref([{ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 }]);
-const desconto = ref(0);
-const quantidadeTotal = ref(0);
-const dataHora = ref(new Date().toISOString().slice(0, 16));
-const observacoes = ref('');
-
-const addProduct = () => {
-  produtos.value.push({ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 });
-};
-
-const calculateTotal = () => {
-  quantidadeTotal.value = produtos.value.reduce((sum, product) => {
-    product.totalPrice = product.quantity * product.unitPrice;
-    return sum + product.totalPrice;
-  }, 0) - desconto.value;
-};
-
-const registrarVenda = () => {
-  calculateTotal();
-  const venda = {
-    NomeCliente: NomeCliente.value,
-    produtos: produtos.value,
-    desconto: desconto.value,
-    quantidadeTotal: quantidadeTotal.value,
-    dataHora: dataHora.value,
-    observacoes: observacoes.value,
-  };
-  store.dispatch('registrarVenda', venda);
-  NomeCliente.value = '';
-  produtos.value = [{ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 }];
-  desconto.value = 0;
-  quantidadeTotal.value = 0;
-  dataHora.value = new Date().toISOString().slice(0, 16);
-  observacoes.value = '';
-};
-</script>
 
 <style scoped>
+#TituloVendas {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+#formConteudo {
+  
+}
 </style>

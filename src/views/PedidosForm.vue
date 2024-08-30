@@ -1,27 +1,32 @@
 <script setup>
-import { ref } from 'vue';
-import { useStore } from 'vuex';
+import { ref } from 'vue'
+import { useStore } from 'vuex'
 
-const store = useStore();
+const store = useStore()
 
-const nomeCliente = ref('');
-const dataHora = ref(new Date().toISOString().slice(0, 16));
-const itens = ref([{ nome: '', quantidade: 1 }]);
-const observacoes = ref('');
+const nomeCliente = ref('')
+const dataHora = ref(new Date().toISOString().slice(0, 16))
+const itens = ref([{ nome: '', quantidade: 1 }])
+const observacoes = ref('')
 
 const addItem = () => {
-  itens.value.push({ nome: '', quantidade: 1 });
-};
+  itens.value.push({ nome: '', quantidade: 1 })
+}
 
 const registrarPedido = () => {
+  alert('Pedido registrado com sucesso!')
   const pedido = {
     nomeCliente: nomeCliente.value,
     dataHora: dataHora.value,
     itens: itens.value,
-    observacoes: observacoes.value,
-  };
-  store.dispatch('registrarPedido', pedido);
-};
+    observacoes: observacoes.value
+  }
+  store.dispatch('registrarPedido', pedido)
+  nomeCliente.value = ''
+  itens.value = [{ nome: '', quantidade: 1 }]
+  dataHora.value = new Date().toISOString().slice(0, 16)
+  observacoes.value = ''
+}
 </script>
 
 <template>
@@ -52,6 +57,4 @@ const registrarPedido = () => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

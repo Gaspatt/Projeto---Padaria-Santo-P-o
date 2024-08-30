@@ -1,5 +1,5 @@
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -7,37 +7,62 @@ export default {
       novoFornecedor: {
         nome: '',
         produto: '',
-        valor: 0,
-      },
-    };
+        quantidade: 0,
+        valorUnit: 0,
+        valorTotal: 0
+      }
+    }
   },
   computed: {
-    ...mapGetters(['todosFornecedores']),
+    ...mapGetters(['todosFornecedores'])
   },
   methods: {
     ...mapActions(['registrarFornecedor']),
     adicionarFornecedor() {
-      this.registrarFornecedor(this.novoFornecedor);
-      this.novoFornecedor = { nome: '', produto: '', valor: 0 };
-    },
-  },
-};
+      this.novoFornecedor.valorTotal = this.novoFornecedor.quantidade * this.novoFornecedor.valorUnit
+      alert('Fornecedor registrado com sucesso!')
+      this.registrarFornecedor(this.novoFornecedor)
+      this.novoFornecedor = {
+        nome: '',
+        produto: '',
+        quantidade: 0,
+        valorUnit: 0,
+        valorTotal: 0
+      }
+    }
+  }
+}
+
 </script>
 
 <template>
   <div>
     <h1>Fornecedores</h1>
     <form @submit.prevent="adicionarFornecedor">
-      <input v-model="novoFornecedor.nome" placeholder="Nome do Fornecedor" required />
-      <input v-model="novoFornecedor.produto" placeholder="Produto Fornecido" required />
-      <input v-model="novoFornecedor.valor" placeholder="Valor" required />
+      <label for="forneNome">Nome do Fornecedor:</label>
+      <input id="forneNome" v-model="novoFornecedor.nome" required />
+      <label for="forneProduto">Produto Fornecido:</label>
+      <input id="forneProduto" v-model="novoFornecedor.produto" required />
+      <label for="forneQuantidade">Quantidade dos produtos fornecidos:</label>
+      <input type="number" id="forneQuantidade" v-model="novoFornecedor.quantidade" required />
+      <label for="forneValor">Valor unitário:</label>
+      <input id="forneValor" v-model="novoFornecedor.valorUnit" type="number" required />
       <button type="submit">Adicionar Fornecedor</button>
     </form>
-    <ul>
+    <ul id="ListaFornecedor">
       <li v-for="fornecedor in todosFornecedores" :key="fornecedor.id">
-        {{ fornecedor.nome }} - {{ fornecedor.produto }} - R${{ fornecedor.valor }}
+        <p>Fornecedor: {{ fornecedor.nome }}</p>
+        <p>Produto: {{ fornecedor.produto }}</p>
+        <p>Quantidade: {{ fornecedor.quantidade }}</p>
+        <p>Valor Total: R${{ fornecedor.valorTotal }}</p>
       </li>
     </ul>
   </div>
 </template>
 
+<style scoped>
+#ListaFornecedor {
+
+
+}
+</style>
