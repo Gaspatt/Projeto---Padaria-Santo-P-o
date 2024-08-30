@@ -53,5 +53,5 @@ const registrarPedido = () => {
 </template>
 
 <style scoped>
-/* Adicione estilos conforme necessário */
+
 </style>

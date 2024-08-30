@@ -1,16 +1,3 @@
-<template>
-  <div>
-    <h1>Relatórios</h1>
-    <button @click="gerarRelatorio('produtosVendidos')">Produtos Vendidos</button>
-    <button @click="gerarRelatorio('estoqueProdutos')">Estoque de Produtos</button>
-    <button @click="gerarRelatorio('consumoProdutos')">Consumo de Produtos</button>
-    <button @click="gerarRelatorio('clientesContribuintes')">Clientes Contribuintes</button>
-    <button @click="gerarRelatorio('fornecedores')">Fornecedores</button>
-    <button @click="gerarRelatorio('pedidosClientes')">Pedidos de Clientes</button>
-    <pre>{{ relatorioConteudo }}</pre>
-  </div>
-</template>
-
 <script>
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
@@ -35,10 +22,8 @@ export default {
             `Cliente: ${venda.NomeCliente}, Produto: ${venda.produtos.map(p => p.name).join(', ')}, Quantidade: ${venda.produtos.map(p => p.quantity).join(', ')}, Valor Total: R$${venda.quantidadeTotal}`
           ).join('\n');
         case 'estoqueProdutos':
-          // Lógica para calcular o estoque de produtos
           return 'Estoque de Produtos';
         case 'consumoProdutos':
-          // Lógica para calcular o consumo de produtos
           return 'Consumo de Produtos';
         case 'clientesContribuintes': {
           const clientesContribuintes = {};
@@ -73,3 +58,16 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div>
+    <h1>Relatórios</h1>
+    <button @click="gerarRelatorio('produtosVendidos')">Produtos Vendidos</button>
+    <button @click="gerarRelatorio('estoqueProdutos')">Estoque de Produtos</button>
+    <button @click="gerarRelatorio('consumoProdutos')">Consumo de Produtos</button>
+    <button @click="gerarRelatorio('clientesContribuintes')">Clientes Contribuintes</button>
+    <button @click="gerarRelatorio('fornecedores')">Fornecedores</button>
+    <button @click="gerarRelatorio('pedidosClientes')">Pedidos de Clientes</button>
+    <pre>{{ relatorioConteudo }}</pre>
+  </div>
+</template>

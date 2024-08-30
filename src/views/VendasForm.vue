@@ -71,7 +71,6 @@ const registrarVenda = () => {
     observacoes: observacoes.value,
   };
   store.dispatch('registrarVenda', venda);
-  // Limpar os campos do formulário após o registro
   NomeCliente.value = '';
   produtos.value = [{ name: '', quantity: 1, unitPrice: 0, totalPrice: 0 }];
   desconto.value = 0;
@@ -82,5 +81,5 @@ const registrarVenda = () => {
 </script>
 
 <style scoped>
-/* Adicione estilos conforme necessário */
+
 </style>

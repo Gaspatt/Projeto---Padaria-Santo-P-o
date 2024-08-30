@@ -14,7 +14,6 @@
 </script>
 
 <style>
-/* Adicione estilos conforme necessário */
 nav {
   display: flex;
   gap: 10px;
