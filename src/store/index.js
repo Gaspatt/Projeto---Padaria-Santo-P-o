@@ -1,12 +1,11 @@
+// store/index.js
 import { createStore } from 'vuex';
 
-const store = createStore({
-  state() {
-    return {
-      vendas: [],
-      fornecedores: [],
-      pedidos: [],
-    };
+export default createStore({
+  state: {
+    vendas: [],
+    fornecedores: [],
+    pedidos: [],
   },
   mutations: {
     adicionarVenda(state, venda) {
@@ -36,5 +35,3 @@ const store = createStore({
     todosPedidos: (state) => state.pedidos,
   },
 });
-
-export default store;
