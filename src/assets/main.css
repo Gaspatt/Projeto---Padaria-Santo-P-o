@@ -132,7 +132,7 @@ header h1 {
 }
 
 .navbar a:hover {
-  background: #3E240F;
+  color: #000000;
   border-radius: 4px;
 }
 
